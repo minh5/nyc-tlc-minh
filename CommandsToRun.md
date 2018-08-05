@@ -40,6 +40,21 @@ docker build -t taxis-now/demand-producer:0.1 -f Dockerfile/demand .
 docker build -t taxis-now/supply-producer:0.1 -f Dockerfile/supply .
 ```
 
+#### Local
+Run from the home of the repo
+```
+docker run -w "$(pwd)" -v "$(pwd)/data":"$(pwd)/data" \
+           -e SOURCE='local' -e KAFKA='192.168.99.100:9092' -e SPARK_MASTER='local[8]' \
+           -e ES_NODE='localhost' -e ES_PORT='9200' -e ES_CLUSTER_NAME='elasticsearch' \
+        taxis-now/demand-producer:0.1
+
+docker run -w "$(pwd)" -v "$(pwd)/data":"$(pwd)/data" \
+           -e SOURCE='local' -e KAFKA='192.168.99.100:9092' -e SPARK_MASTER='local[8]' \
+           -e ES_NODE='localhost' -e ES_PORT='9200' -e ES_CLUSTER_NAME='elasticsearch' \
+        taxis-now/supply-producer:0.1
+```
+
+#### S3
 ```
 docker run -e SOURCE='S3' -e KAFKA='192.168.99.100:9092' -e SPARK_MASTER='local[8]' \
            -e ES_NODE='localhost' -e ES_PORT='9200' -e ES_CLUSTER_NAME='elasticsearch' \
