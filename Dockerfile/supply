@@ -1,0 +1,6 @@
+# Base Alpine Linux based image with OpenJDK JRE only
+FROM openjdk:8-jre-alpine
+
+COPY target/taxis-now-*.jar /app.jar
+
+CMD ["/usr/bin/java", "-cp", "/app.jar", "org.anish.taxisnow.producer.supply.SupplyProducer"]
