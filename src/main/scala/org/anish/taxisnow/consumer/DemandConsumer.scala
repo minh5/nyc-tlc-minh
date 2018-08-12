@@ -24,8 +24,7 @@ class DemandConsumer {
     .option("checkpointLocation", "~/Desktop/checkpoints")
 
   // start the streaming
-  while(true) {
-    query.start()
-  }
+  query.start()
+  query.awaitTermination()
 
 }
